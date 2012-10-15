@@ -13,12 +13,12 @@ body {
 }
 
 div {
-  font-size: 100px;
+  font-size: 180px;
 }
 
 button {
   font-family: monospace;
-  font-size: 30px;
+  font-size: 60px;
   padding: 20px;
   background: none;
   border: 1px solid #333;
@@ -59,7 +59,10 @@ button:hover {
     return this.toPrecision(3)
   }
 
-  var start = function(){
+  var start = function(e){
+    if (e != null)
+      e.preventDefault()
+
     if (startTime == null)
       startTime = new Date().getTime()
 
@@ -72,7 +75,10 @@ button:hover {
     }, 50);
   }
 
-  var stop = function(){
+  var stop = function(e){
+    if (e != null)
+      e.preventDefault()
+
     if (interval != null){
       clearInterval(interval)
       interval = null
@@ -84,7 +90,10 @@ button:hover {
     }
   }
 
-  var reset = function(){
+  var reset = function(e){
+    if (e != null)
+      e.preventDefault()
+
     stop()
     startTime = null
     stoppedTime = 0
@@ -94,6 +103,10 @@ button:hover {
   document.getElementById('start').onclick = start
   document.getElementById('stop').onclick = stop
   document.getElementById('reset').onclick = reset
+
+  document.getElementById('start').ontouchstart = start
+  document.getElementById('stop').ontouchstart = stop
+  document.getElementById('reset').ontouchstart = reset
 
   reset()
 
