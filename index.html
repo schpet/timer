@@ -67,7 +67,7 @@ button:hover {
       var now = new Date().getTime()
       var msDiff = now - startTime + stoppedTime
       var seconds = (msDiff / 1000) % 60
-      var minutes = Math.floor(seconds / 60)
+      var minutes = Math.floor(msDiff / 1000 / 60)
       out.innerHTML = minutes + ':' + seconds.prettySeconds()
     }, 50);
   }
